@@ -399,8 +399,7 @@ Panduan berikut mungkin tidak diterapkan pada *code formatter* namun ini adalah 
 ### Ekspresi
 
 * <a name="single-line-defs"></a>
-  Run single-line `def`s that match for the same function together, but separate
-  multiline `def`s with a blank line.
+  Gabungkan `def` *single-line* pada fungsi yang sama namun pisahkan dari `def` *multiline* dengan baris kosong.
   <sup>[[tautan](#single-line-defs)]</sup>
 
   ```elixir
@@ -413,7 +412,7 @@ Panduan berikut mungkin tidak diterapkan pada *code formatter* namun ini adalah 
   ```
 
 * <a name="multiple-function-defs"></a>
-  If you have more than one multiline `def`, do not use single-line `def`s.
+  Jika Anda memiliki lebih dari satu `def` *multiline*, jangan gunakan `def` *single-line*.
   <sup>[[tautan](#multiple-function-defs)]</sup>
 
   ```elixir
@@ -435,7 +434,7 @@ Panduan berikut mungkin tidak diterapkan pada *code formatter* namun ini adalah 
   ```
 
 * <a name="pipe-operator"></a>
-  Use the pipe operator to chain functions together.
+  Gunakan operator `pipe` untuk merantai fungsi.
   <sup>[[tautan](#pipe-operator)]</sup>
 
   ```elixir
@@ -445,26 +444,24 @@ Panduan berikut mungkin tidak diterapkan pada *code formatter* namun ini adalah 
   # dianjurkan
   some_string |> String.downcase() |> String.trim()
 
-  # Multiline pipelines are not further indented
+  # Multiline pipelines tidak diberi indentasi lebih
   some_string
   |> String.downcase()
   |> String.trim()
 
-  # Multiline pipelines on the right side of a pattern match
-  # should be indented on a new line
+  # Multiline pipelines di sisi kanan dari pencocokan pola
+  # perlu dikasih indentasi pada baris baru
   sanitized_string =
     some_string
     |> String.downcase()
     |> String.trim()
   ```
 
-  While this is the preferred method, take into account that copy-pasting
-  multiline pipelines into IEx might result in a syntax error, as IEx will
-  evaluate the first line without realizing that the next line has a pipeline.
-  To avoid this, you can wrap the pasted code in parentheses.
+  Meskipun ini merupakan metode yang dianjurkan, perlu diperhatikan bahwa menyalin *multiline pipelines* ke `IEx` dapat menyebabkan eror sintaksis. Hal ini disebabkan `IEx` akan mengevaluasi baris pertama tanpa menyadari bahwa baris selanjutnya memiliki `pipeline`. 
+  Untuk mencegah ini, Anda dapat membungkus kode dengan tanda kurung.
 
 * <a name="avoid-single-pipelines"></a>
-  Avoid using the pipe operator just once.
+  Hindari hanya satu penggunaan operator `pipe`.
   <sup>[[tautan](#avoid-single-pipelines)]</sup>
 
   ```elixir
@@ -480,7 +477,7 @@ Panduan berikut mungkin tidak diterapkan pada *code formatter* namun ini adalah 
   ```
 
 * <a name="bare-variables"></a>
-  Use _bare_ variables in the first part of a function chain.
+  Gunakan variabel *bare* pada awal dari rantai fungsi
   <sup>[[tautan](#bare-variables)]</sup>
 
   ```elixir
@@ -492,7 +489,7 @@ Panduan berikut mungkin tidak diterapkan pada *code formatter* namun ini adalah 
   ```
 
 * <a name="fun-def-parentheses"></a>
-  Use parentheses when a `def` has arguments, and omit them when it doesn't.
+  Gunakan tanda kurung ketika `def` memiliki argumen dan hilangkan ketika tidak memilikinya.
   <sup>[[tautan](#fun-def-parentheses)]</sup>
 
   ```elixir
@@ -516,7 +513,7 @@ Panduan berikut mungkin tidak diterapkan pada *code formatter* namun ini adalah 
   ```
 
 * <a name="do-with-single-line-if-unless"></a>
-  Use `do:` for single line `if/unless` statements.
+  Gunakan `do:` untuk pernyataan `if/unless` *single-line*
   <sup>[[tautan](#do-with-single-line-if-unless)]</sup>
 
   ```elixir
@@ -525,8 +522,8 @@ Panduan berikut mungkin tidak diterapkan pada *code formatter* namun ini adalah 
   ```
 
 * <a name="unless-with-else"></a>
-  Never use `unless` with `else`.
-  Rewrite these with the positive case first.
+  Jangan gunakan `unless` dengan `else`.
+  Tulis kembali kode berikut dengan kasus positif dahulu.
   <sup>[[tautan](#unless-with-else)]</sup>
 
   ```elixir
@@ -546,8 +543,7 @@ Panduan berikut mungkin tidak diterapkan pada *code formatter* namun ini adalah 
   ```
 
 * <a name="true-as-last-condition"></a>
-  Use `true` as the last condition of the `cond` special form when you need a
-  clause that always matches.
+  Gunakan `true` sebagai kondisi terakhir dari `cond` ketika Anda membutuhkan klausa yang selalu cocok.
   <sup>[[tautan](#true-as-last-condition)]</sup>
 
   ```elixir
@@ -577,10 +573,8 @@ Panduan berikut mungkin tidak diterapkan pada *code formatter* namun ini adalah 
   ```
 
 * <a name="parentheses-and-functions-with-zero-arity"></a>
-  Use parentheses for calls to functions with zero arity, so they can be
-  distinguished from variables.
-  Starting in Elixir 1.4, the compiler will warn you about
-  locations where this ambiguity exists.
+  Gunakan tutup kurung untuk pemanggilan fungsi dengan *arity* nol sehingga ia dapat dibedakan dari variabel.
+  Mulai dari Elixir 1.4, *compiler* akan mengingatkan Anda apabila terdapat ambiguitas.
   <sup>[[tautan](#parentheses-and-functions-with-zero-arity)]</sup>
 
   ```elixir
@@ -588,25 +582,24 @@ Panduan berikut mungkin tidak diterapkan pada *code formatter* namun ini adalah 
 
   # tidak dianjurkan
   def my_func do
-    # is this a variable or a function call?
+    # ini itu variabel atau pemanggilan fungsi?
     do_stuff
   end
 
   # dianjurkan
   def my_func do
-    # this is clearly a function call
+    # ini tentu saja pemanggilan fungsi
     do_stuff()
   end
   ```
 
-### Naming
+### Penamaan
 
-This guide follows the [Naming Conventions] from the Elixir docs,
-including the use of `snake_case` and `CamelCase` to describe the casing
-rules.
+Panduan ini mengikuti [Konvensi Penamaan][Naming Conventions] dari dokumentasi Elixir
+termasuk penggunaan `snake_case` dan `CamelCase` untuk mendeskripsikan aturan huruf kapital.
 
 * <a name="snake-case"></a>
-  Use `snake_case` for atoms, functions and variables.
+  Gunakan `snake_case` untuk `atoms`, fungsi, dan variabel.
   <sup>[[tautan](#snake-case)]</sup>
 
   ```elixir
@@ -632,7 +625,7 @@ rules.
   ```
 
 * <a name="camel-case"></a>
-  Use `CamelCase` for modules (keep acronyms like HTTP, RFC, XML uppercase).
+  Gunakan `CamelCase` untuk `modules` (gunakan huruf kapital untuk akronim, seperti HTTP, RFC, XML).
   <sup>[[tautan](#camel-case)]</sup>
 
   ```elixir
@@ -660,8 +653,7 @@ rules.
   ```
 
 * <a name="predicate-function-trailing-question-mark"></a>
-  Functions that return a boolean (`true` or `false`) should be named
-  with a trailing question mark.
+  Fungsi yang mengembalikan `boolean` (`true` atau `false`) harus dinamai dengan akhiran tanda tanya.
   <sup>[[tautan](#predicate-function-trailing-question-mark)]</sup>
 
   ```elixir
@@ -671,9 +663,8 @@ rules.
   ```
 
 * <a name="predicate-function-is-prefix"></a>
-  Boolean checks that can be used in guard clauses should be named with
-  an `is_` prefix.
-  For a list of allowed expressions, see the [Guard][Guard Expressions] docs.
+  Pengecekan `boolean` yang dapat digunakan pada klausa `guard` harus dinamai dengan prefiks `is_`.
+  Untuk daftar ekspresi yang dibolehkan, dapat dilihat pada dokumentasi [`Guard`][Guard Expressions].
   <sup>[[tautan](#predicate-function-is-prefix)]</sup>
 
   ```elixir
@@ -682,55 +673,52 @@ rules.
   ```
 
 * <a name="private-functions-with-same-name-as-public"></a>
-  Private functions should not have the same name as public functions.
-  Also, the `def name` and `defp do_name` pattern is discouraged.
+  Fungsi pribadi seharusnya tidak memiliki nama yang sama dengan fungsi publik.
+  Dan juga, tidak dianjurkan untuk menggunakan pola `def name` dan `defp do_name`.
 
-  Usually one can try to find more descriptive names focusing on the differences.
+  Biasanya orang dapat mencari nama yang lebih deskriptif yang memfokuskan pada perbedaannya.
   <sup>[[tautan](#private-functions-with-same-name-as-public)]</sup>
 
   ```elixir
   def sum(list), do: sum_total(list, 0)
 
-  # private functions
+  # fungsi pribadi
   defp sum_total([], total), do: total
   defp sum_total([head | tail], total), do: sum_total(tail, head + total)
   ```
 
-### Comments
+### Komentar
 
 * <a name="expressive-code"></a>
-  Write expressive code and try to convey your program's intention through
-  control-flow, structure and naming.
+  Tulis kode dengan ekspresif dan coba menyampaikan tujuan dari program dengan *control-flow*, struktur, dan penamaan.
   <sup>[[tautan](#expressive-code)]</sup>
 
 * <a name="comment-grammar"></a>
-  Comments longer than a word are capitalized, and sentences use punctuation.
-  Use [one space][Sentence Spacing] after periods.
+  Gunakan huruf kapital pada komentar yang lebih dari 1 kata dan gunakan tanda baca pada kalimat.
+  Gunakan [satu spasi][Sentence Spacing] setelah titik.
   <sup>[[tautan](#comment-grammar)]</sup>
 
   ```elixir
   # tidak dianjurkan
-  # these lowercase comments are missing punctuation
+  # komentar huruf kecil berikut kehilangan tanda baca
 
   # dianjurkan
-  # Capitalization example
-  # Use punctuation for complete sentences.
+  # Contoh penggunaan huruf kapital
+  # Gunakan tanda baca untuk kalimat lengkap.
   ```
 
 * <a name="comment-line-length"></a>
-  Limit comment lines to 100 characters.
+  Batasi komentar Anda dengan 100 karakter.
   <sup>[[tautan](#comment-line-length)]</sup>
 
-#### Comment Annotations
+#### Anotasi Komentar
 
 * <a name="annotations"></a>
-  Annotations should usually be written on the line immediately above the
-  relevant code.
+  Anotasi seharusnya ditulis di atas kode yang relevan.
   <sup>[[tautan](#annotations)]</sup>
 
 * <a name="annotation-keyword"></a>
-  The annotation keyword is uppercase, and is followed by a colon and a space,
-  then a note describing the problem.
+  Kata kunci anotasi ditulis dengan huruf kapital dan diikuti dengan titik dua atau spasi, lalu berikan catatan.
   <sup>[[tautan](#annotation-keyword)]</sup>
 
   ```elixir
@@ -739,9 +727,8 @@ rules.
   ```
 
 * <a name="exceptions-to-annotations"></a>
-  In cases where the problem is so obvious that any documentation would be
-  redundant, annotations may be left with no note.
-  This usage should be the exception and not the rule.
+  Untuk kasus ketika permasalahan terlihat sangat jelas dan dokumentasi akan membuat redundan, Anda dapat menghilangkan catatan pada anotasi.
+  Penggunaan ini hanya untuk pengecualian saja bukan menjadi aturan.
   <sup>[[tautan](#exceptions-to-annotations)]</sup>
 
   ```elixir
@@ -752,36 +739,31 @@ rules.
   ```
 
 * <a name="todo-notes"></a>
-  Use `TODO` to note missing features or functionality that should be added at a
-  later date.
+  Gunakan `TODO` untuk menandai fitur yang hilang atau fungsionalitas yang seharusnya ada di kemudian hari.
   <sup>[[tautan](#todo-notes)]</sup>
 
 * <a name="fixme-notes"></a>
-  Use `FIXME` to note broken code that needs to be fixed.
+  Gunakan `FIXME` untuk menandai kode yang salah yang perlu diperbaiki secepatnya.
   <sup>[[tautan](#fixme-notes)]</sup>
 
 * <a name="optimize-notes"></a>
-  Use `OPTIMIZE` to note slow or inefficient code that may cause performance
-  problems.
+  Gunakan `OPTIMIZE` untuk menandai kode yang lambat atau tidak efisien yang mungkin menyebabkan masalah kinerja.
   <sup>[[tautan](#optimize-notes)]</sup>
 
 * <a name="hack-notes"></a>
-  Use `HACK` to note code smells where questionable coding practices were used
-  and should be refactored away.
+  Gunakan `HACK` untuk menandai *code smells* yang menggunakan standar yang dipertanyakan dan perlu direfaktor.
   <sup>[[tautan](#hack-notes)]</sup>
 
 * <a name="review-notes"></a>
-  Use `REVIEW` to note anything that should be looked at to confirm it is
-  working as intended.
+  Gunakan `REVIEW` untuk menandai code yang perlu dikaji lebih lanjut untuk memastikan bahwa kode berfungsi sebagaimana dimaksud.
   For example: `REVIEW: Are we sure this is how the client does X currently?`
   <sup>[[tautan](#review-notes)]</sup>
 
 * <a name="custom-keywords"></a>
-  Use other custom annotation keywords if it feels appropriate, but be sure to
-  document them in your project's `README` or similar.
+  Gunakan kata kunci anotasi khusus jika dirasa cocok namun pastikan Anda menambahkannya pada dokumentasi proyek atau `README`.
   <sup>[[tautan](#custom-keywords)]</sup>
 
-### Modules
+### `Modules`
 
 * <a name="one-module-per-file"></a>
   Use one module per file unless the module is only used internally by another
@@ -1341,6 +1323,7 @@ project.
 [French]: https://github.com/ronanboiteau/elixir_style_guide/blob/master/README_frFR.md
 [Guard Expressions]: https://hexdocs.pm/elixir/guards.html#list-of-allowed-expressions
 [Hex]: https://hex.pm/packages
+[Indonesian]: https://github.com/AlifArifin/elixir_style_guide/blob/master/README_inID.md
 [Japanese]: https://github.com/kenichirow/elixir_style_guide/blob/master/README-jaJP.md
 [Korean]: https://github.com/marocchino/elixir_style_guide/blob/new-korean/README-koKR.md
 [License]: http://creativecommons.org/licenses/by/3.0/deed.en_US
