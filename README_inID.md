@@ -766,34 +766,33 @@ termasuk penggunaan `snake_case` dan `CamelCase` untuk mendeskripsikan aturan hu
 ### `Modules`
 
 * <a name="one-module-per-file"></a>
-  Use one module per file unless the module is only used internally by another
-  module (such as a test).
+  Gunakan satu `module` ber berkas kecuali `module` tersebut hanya digunakan secara internal oleh `module` lain (seperti pengujian).
   <sup>[[tautan](#one-module-per-file)]</sup>
 
 * <a name="underscored-filenames"></a>
-  Use `snake_case` file names for `CamelCase` module names.
+  Gunakan `snake_case` untuk penamaan file dan `CamelCase` untuk nama `module`.
   <sup>[[tautan](#underscored-filenames)]</sup>
 
   ```elixir
-  # file is called some_module.ex
+  # berkas ini bernaam some_module.ex
 
   defmodule SomeModule do
   end
   ```
 
 * <a name="module-name-nesting"></a>
-  Represent each level of nesting within a module name as a directory.
+  Wakili tiap level dalam nama `module` sebagai direktori.
   <sup>[[tautan](#module-name-nesting)]</sup>
 
   ```elixir
-  # file is called parser/core/xml_parser.ex
+  # berkas ini bernama parser/core/xml_parser.ex
 
   defmodule Parser.Core.XMLParser do
   end
   ```
 
 * <a name="module-attribute-ordering"></a>
-  List module attributes, directives, and macros in the following order:
+  Berikut merupakan daftar atribut, arahan, dan makro `module`:
   <sup>[[tautan](#module-attribute-ordering)]</sup>
 
   1. `@moduledoc`
@@ -810,14 +809,13 @@ termasuk penggunaan `snake_case` dan `CamelCase` untuk mendeskripsikan aturan hu
   1. `@optional_callbacks`
   1. `defmacro`, `defmodule`, `defguard`, `def`, etc.
 
-  Add a blank line between each grouping, and sort the terms (like module names)
-  alphabetically.
-  Here's an overall example of how you should order things in your modules:
+  Tambahkan baris kosong untuk tiap grup dan sortir berdasarkan abjad.
+  Berikut merupakan contoh bagaimana seharusnya Anda menyortir di dalam sebuah `module`:
 
   ```elixir
   defmodule MyModule do
     @moduledoc """
-    An example module
+    Contoh modul
     """
 
     @behaviour MyBehaviour
@@ -849,20 +847,19 @@ termasuk penggunaan `snake_case` dan `CamelCase` untuk mendeskripsikan aturan hu
     defmacro __using__(_opts), do: :no_op
 
     @doc """
-    Determines when a term is `:ok`. Allowed in guards.
+    Menentukan kapan penggunaan `:ok`. Hal ini diperbolehkan dalam guards
     """
     defguard is_ok(term) when term == :ok
 
     @impl true
     def init(state), do: {:ok, state}
 
-    # Define other functions here.
+    # Definisikan fungsi lainnya di sini.
   end
   ```
 
 * <a name="module-pseudo-variable"></a>
-  Use the `__MODULE__` pseudo variable when a module refers to itself. This
-  avoids having to update any self-references when the module name changes.
+  Gunakan *pseudo variable* `__MODULE__` ketika sebuah `module` mengacu pada dirinya sendiri. Hal ini untuk menghindari pembaruan ketika nama `module` berganti.
   <sup>[[tautan](#module-pseudo-variable)]</sup>
 
   ```elixir
